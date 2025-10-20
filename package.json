@@ -1,6 +1,7 @@
 {
   "name": "rag_chatbot",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,7 +10,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@datastax/astra-db-ts": "^2.1.1",
+    "@google/generative-ai": "^0.24.1",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.3",
+    "jsonwebtoken": "^9.0.2",
+    "langchain": "^0.3.36",
     "next": "15.5.4",
+    "puppeteer": "^24.24.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-markdown": "^10.1.0"
@@ -20,5 +28,21 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "tailwindcss": "^4"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EshikaKumari0204/Chatbot-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EshikaKumari0204/Chatbot-Project/issues"
+  },
+  "homepage": "https://github.com/EshikaKumari0204/Chatbot-Project#readme"
 }
