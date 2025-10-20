@@ -1,14 +1,11 @@
 import { DataAPIClient } from "@datastax/astra-db-ts"
 import puppeteer from "puppeteer";
 import { getembedding } from "../lib/apicall.js";
-
 const dbClient = new DataAPIClient(process.env.ASTRA_DB_API_APPLICATION_TOKEN);
 export const db = dbClient.db(process.env.ASTRA_DB_API_END_POINT);
 export const collection = db.collection("rag_docs");
 export const userscollection=db.collection("users");
-const urls = [
-  
-  //  "https://en.wikipedia.org/wiki/Cricket",
+const urls = [ //  "https://en.wikipedia.org/wiki/Cricket",
   // "https://en.wikipedia.org/wiki/Indian_Premier_League",
   // "https://en.wikipedia.org/wiki/Virat_Kohli",
   // "https://en.wikipedia.org/wiki/MS_Dhoni",
@@ -19,7 +16,7 @@ const urls = [
   // "https://en.wikipedia.org/wiki/Cricket"
 ];
 async function scrapePage(url) {
-  console.log(` Scraping for ${url}`);
+  console.log(` scraping for ${url}`);
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -34,17 +31,14 @@ async function scrapePage(url) {
       const main = document.querySelector('main') || document.body;
       return main.innerText.replace(/\s+/g, ' ').trim();
     });
-
     await browser.close();
-    console.log(` Scraped ${text.length} characters from ${url}`);
+    console.log(` scraped ${text.length} letters from ${url}`);
     return text;
-
-  } catch (err) {
+ } catch (err) {
     await browser.close();
-    console.error(` Scrapping failed ${url}:`, err);
+    console.error(`error while scrapping  ${url}:`, err);
     return "";
-  }
-}
+  }}
 function chunkText(text, chunkSize) {
   if (!text || text.length === 0) {
     console.log("no text to create chunk");
@@ -55,8 +49,7 @@ function chunkText(text, chunkSize) {
   for (let i = 0; i < words.length; i += chunkSize) {
   chunks.push(words.slice(i, i + chunkSize).join(" "));
   }
-  return chunks;
-}
+  return chunks;}
 async function ingest() {
   for (const url of urls) {
     try {

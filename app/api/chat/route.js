@@ -25,7 +25,7 @@ import { getembedding,getresponse } from "@/lib/apicall";
   const result=await collection.find({},{sort:{$vector:queryembedding},limit:2}).toArray();
   
   const context=result.map((doc)=>doc.text.slice(0,500)).join("\n\n");
-   const fullprompt=`you are a cricket expert assistant .use the context to answer the user question Context:${context} question:${query} Answer:`;
+   const fullprompt=`you are a cricket expert assistant .use the context to answer the user question in 3-4 lines  . Context:${context} question:${query} Answer:`;
    //generate  reponse by combining context and your main query
    const answer=await getresponse(fullprompt);
     if(answer){
