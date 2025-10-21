@@ -2,8 +2,8 @@
 import ReactMarkdown from 'react-markdown'
 import { useState } from "react";
 import { useEffect,useRef } from 'react';
-import { checktoken } from "@/lib/checktoken";
 import { useRouter } from 'next/navigation';
+import withAuth from '@/components/withauth';
 const chatbox=()=>{
   const router=useRouter();
   const [load,setload]=useState(false);
@@ -14,13 +14,10 @@ const chatbox=()=>{
   //check the token 
   useEffect(()=>{
 const  usertoken=localStorage.getItem("token");
-console.log("token received from ls",usertoken);
-//empty or expired token
-if(!usertoken || !checktoken(usertoken)){
-  localStorage.removeItem("token");
-  router.push("/loginpage")}
-else{
-  settoken(usertoken);}},[]);
+if(usertoken){
+ settoken(usertoken);
+}
+ },[]);
   useEffect(()=>{
     lastmess.current?.scrollIntoView({behaviour:"smooth"});
   },[chats]);
@@ -71,6 +68,6 @@ return (
     <input type="text" className="w-96 h-8 border-1 m-2 rounded-2xl px-1 border-white text-white"name="message" value={message} placeholder="enter your query" onChange={(e)=>setmessage(e.target.value)}/>
     <button className="bg-indigo-100 hover:bg-amber-200 rounded-2xl text-[12px] md:text-[16px] w-20 px-2 py-1 md:px-1 md:py-1 disabled:bg-gray-50 " onClick={getreply} disabled={load}>Send</button></div>
    
-  </div></div>)}
-export default chatbox;
+    </div></div>)}
+export default withAuth(chatbox);
 //react markdown for getting the response in proper html format

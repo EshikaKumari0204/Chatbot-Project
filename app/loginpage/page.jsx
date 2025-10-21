@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 const loginpage=()=>{
   const router=useRouter();
   const [loading,setloading]=useState(false);
-
   const [username,setusername]=useState("");
 const [pass,setpass]=useState("");
 const [signup,setsignup]=useState(false);
@@ -28,9 +27,6 @@ if(res.ok){
   if(!signup && data.token ){
     localStorage.setItem("token",data.token);
       router.push("/chatbox");
-  }
-  else{
-    router.push("/loginpage");
   }
 }
 else{

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import {userscollection} from "@/scripts/db";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken"
-const secret=process.env.JWT_SECRET;
+const secret=process.env.NEXT_PUBLIC_JWT_SECRET;
 
 export async function POST(req){
   try{
