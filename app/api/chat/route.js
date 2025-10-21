@@ -1,9 +1,16 @@
 import { NextResponse} from "next/server";
 import {collection} from "@/scripts/db";
 import { getembedding,getresponse } from "@/lib/apicall";
+import { ratelimiter } from "@/lib/ratelimit";
  export async function POST(req){
   //get the requested query
   try{
+    const ip=req.headers.get("x-forwarded-for" || "anonymous");
+    const {success,remaining,reset}=await ratelimiter.limit(ip);
+   
+    if(!success){
+      return new NextResponse("rate limit exceeded try again after 1 min",{status:400});
+    }
   let query=(await req.text()).trim();
   //check empty query
   if(!query){

@@ -12,6 +12,8 @@
   "dependencies": {
     "@datastax/astra-db-ts": "^2.1.1",
     "@google/generative-ai": "^0.24.1",
+    "@upstash/ratelimit": "^2.0.6",
+    "@upstash/redis": "^1.35.6",
     "bcryptjs": "^3.0.2",
     "dotenv": "^17.2.3",
     "jsonwebtoken": "^9.0.2",
