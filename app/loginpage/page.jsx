@@ -24,7 +24,8 @@ const data=await res.json();
 setloading(false);
 if(res.ok){
   setmess(data.message);
-  if(!signup && data.token ){
+  
+    if(!signup && data.token ){
     localStorage.setItem("token",data.token);
       router.push("/chatbox");
   }
@@ -34,7 +35,7 @@ else{
 }
 }
 catch(err){
-  console.log("error occured",err);
+  // console.log("error occured",err);
   setmess("error occured");
 }
 }

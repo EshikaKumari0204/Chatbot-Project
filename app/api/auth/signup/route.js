@@ -10,9 +10,9 @@ if(!username || !password){
 const hashedpass=await bcrypt.hash(password,10);
 const user={username:username,password:hashedpass};
  await userscollection.insertOne(user);
-return NextResponse.json({message:"Signed up successful"},{status:200})}
+return NextResponse.json({message:"Signed up successful. Click login "},{status:200})}
 catch(err){
-  console.log("error while doing signup ",err);
+  // console.log("error while doing signup ",err);
   return NextResponse.json({error:"Signed up not completed successfully"},{status:500});
 }
 }

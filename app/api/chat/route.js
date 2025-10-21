@@ -44,7 +44,7 @@ import { ratelimiter } from "@/lib/ratelimit";
   }
 }
   catch(err){
-    console.log("error present in post route",err);
+    // console.log("error present in post route",err);
     return new NextResponse("error while getting response for your request",{status:500});
   }
  }

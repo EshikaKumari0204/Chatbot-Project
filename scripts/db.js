@@ -44,16 +44,16 @@ async function scrapePage(url) {
       return main.innerText.replace(/\s+/g, ' ').trim();
     });
     await browser.close();
-    console.log(` scraped ${text.length} letters from ${url}`);
+    // console.log(` scraped ${text.length} letters from ${url}`);
     return text;
  } catch (err) {
     await browser.close();
-    console.error(`error while scrapping  ${url}:`, err);
+    // console.error(`error while scrapping  ${url}:`, err);
     return "";
   }}
 function chunkText(text, chunkSize) {
   if (!text || text.length === 0) {
-    console.log("no text to create chunk");
+    // console.log("no text to create chunk");
     return [];
   }
   const words = text.split(/\s+/);
