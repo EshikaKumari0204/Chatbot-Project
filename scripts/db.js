@@ -5,16 +5,28 @@ const dbClient = new DataAPIClient(process.env.ASTRA_DB_API_APPLICATION_TOKEN);
 export const db = dbClient.db(process.env.ASTRA_DB_API_END_POINT);
 export const collection = db.collection("rag_docs");
 export const userscollection=db.collection("users");
-const urls = [ //  "https://en.wikipedia.org/wiki/Cricket",
-  // "https://en.wikipedia.org/wiki/Indian_Premier_League",
-  // "https://en.wikipedia.org/wiki/Virat_Kohli",
-  // "https://en.wikipedia.org/wiki/MS_Dhoni",
-  // "https://en.wikipedia.org/wiki/Cricket_statistics",
-  //  "https://en.wikipedia.org/wiki/Glossary_of_cricket_terms",
-  // "https://en.wikipedia.org/wiki/Formats_of_cricket",
-  // "https://en.wikipedia.org/wiki/Laws_of_Cricket",
-  // "https://en.wikipedia.org/wiki/Cricket"
-];
+   const urls = [
+    // "https://en.wikipedia.org/wiki/Invention",
+    // "https://en.wikipedia.org/wiki/Timeline_of_scientific_discoveries",
+    // "https://en.wikipedia.org/wiki/Timeline_of_historic_inventions",
+    // "https://en.wikipedia.org/wiki/List_of_inventors",
+    // "https://en.wikipedia.org/wiki/List_of_inventions_and_discoveries_by_women",
+    // "https://en.wikipedia.org/wiki/List_of_English_inventions_and_discoveries",
+    // "https://en.wikipedia.org/wiki/List_of_Indian_inventions_and_discoveries",
+    // "https://en.wikipedia.org/wiki/List_of_American_inventions_and_discoveries",
+    // "https://en.wikipedia.org/wiki/List_of_French_inventions_and_discoveries",
+    // "https://en.wikipedia.org/wiki/List_of_German_inventions_and_discoveries",
+    // "https://en.wikipedia.org/wiki/List_of_Russian_inventions_and_discoveries",
+    // "https://en.wikipedia.org/wiki/List_of_inventions_named_after_people",
+    // "https://en.wikipedia.org/wiki/History_of_science",
+    // "https://en.wikipedia.org/wiki/History_of_technology",
+    // "https://en.wikipedia.org/wiki/Scientific_method",
+    // "https://en.wikipedia.org/wiki/Innovation",
+    // "https://en.wikipedia.org/wiki/Discovery_(observation)",
+    // "https://en.wikipedia.org/wiki/History_of_invention",
+    // "https://en.wikipedia.org/wiki/Engineering",
+    // "https://en.wikipedia.org/wiki/Scientific_revolution"
+]
 async function scrapePage(url) {
   console.log(` scraping for ${url}`);
   const browser = await puppeteer.launch({
@@ -68,6 +80,6 @@ async function ingest() {
         }); }  } catch (err) {
       console.error(`error while ingestion ${url}:`, err);}}}
 ingest();
-//run node -rdotenv/config scripts/db.js to run the script file (for getting the embeddings)
+//run node -r dotenv/config scripts/db.js to run the script file (for getting the embeddings)
 //WORK FLOW
 //scrapped the webpages ,generated chunks out of its content and then created embedding of these chunks and stored in DB

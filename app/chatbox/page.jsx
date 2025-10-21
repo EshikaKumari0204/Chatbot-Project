@@ -23,7 +23,6 @@ if(usertoken){
   },[chats]);
   const handlelogout=()=>{
 localStorage.removeItem("token");
-  // window.location.href="/loginpage" ;
 router.push("/loginpage");
 }
   if(!token){
@@ -56,7 +55,7 @@ finally{
   setload(false);}}
 return (
   <div className=" flex flex-col  min-h-screen bg-slate-800  p-3 md:p-10">
-  <div className="flex justify-between p-4 items-center gap-7 md:gap-5">  <h1 className="text-white text-2xl md:text-5xl  text-center font-bold">Welcome to CrickBot </h1><button className="bg-indigo-100 hover:bg-amber-200 rounded-2xl w-20 px-1.5 py-1.5 text-[12px] text-gray-700  md:text-[16px] md:px-3 md:py-1.5  disabled:bg-gray-50" onClick={handlelogout}>Logout</button>
+  <div className="flex justify-between p-3 items-center gap-6 md:gap-5">  <h1 className="text-white text-[20px] md:text-5xl  text-center font-bold">Sci Inventions and Discoveries Bot </h1><button className="bg-indigo-100 hover:bg-amber-200 rounded-2xl w-20 px-1.5 py-1.5 text-[12px] text-gray-700  md:text-[16px] md:px-3 md:py-1.5  disabled:bg-gray-50" onClick={handlelogout}>Logout</button>
    </div>
     <div className="flex-1 flex flex-col overflow-y-auto space-y-3 px-4 py-2 gap-3 md:gap-5 md:text-[16px] text-[12px]">
      {chats.map((msg,i)=>(<div className={`md:p-2 px-2 py-1.5 font-bold text-black max-w-[95%] md:max-w-[75%] border-2 rounded-2xl w-fit ${msg.sender==="user"?"bg-indigo-100":"bg-amber-100 "}`} key={i}><ReactMarkdown>{msg.text}</ReactMarkdown></div>))}

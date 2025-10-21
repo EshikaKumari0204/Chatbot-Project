@@ -3,9 +3,9 @@ import Link from "next/link";
 const Home=()=>{
   return (
 
-      <div className="w-screen h-screen bg-slate-900 flex flex-col gap-9 justify-center items-center p-8 md:p-5 ">
+      <div className="w-screen h-screen bg-slate-900 flex flex-col gap-9 justify-center items-center p-6 md:p-5 ">
       <div className="flex flex-col gap-2" >
-      <h1 className="text-3xl md:text-4xl text-center  text-white">Hey welcome to CrickBot</h1>
+      <h1 className="text-[27px] md:text-4xl text-center  text-white"> Welcome to Sci-Bot</h1>
       
     
      

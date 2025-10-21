@@ -3,16 +3,14 @@ import {collection} from "@/scripts/db";
 import { getembedding,getresponse } from "@/lib/apicall";
 import { ratelimiter } from "@/lib/ratelimit";
  export async function POST(req){
-  //get the requested query
+
   try{
     const ip=req.headers.get("x-forwarded-for" || "anonymous");
     const {success,remaining,reset}=await ratelimiter.limit(ip);
-   
     if(!success){
       return new NextResponse("rate limit exceeded try again after 1 min",{status:400});
     }
   let query=(await req.text()).trim();
-  //check empty query
   if(!query){
     // console.log("no query sent ");
     return new NextResponse("query not sent",{
@@ -25,15 +23,13 @@ import { ratelimiter } from "@/lib/ratelimit";
       headers:{'Content-Type':"text/plain"}
     })
   }
-  //get embedding for user query
   else{
   const queryembedding=await getembedding(query);
   //find the similar one from all data in database to get the context
   const result=await collection.find({},{sort:{$vector:queryembedding},limit:2}).toArray();
   
   const context=result.map((doc)=>doc.text.slice(0,500)).join("\n\n");
-   const fullprompt=`you are a cricket expert assistant .use the context to answer the user question in 3-4 lines  . Context:${context} question:${query} Answer:`;
-   //generate  reponse by combining context and your main query
+   const fullprompt=`you are a science inventions and discoveries expert assistant .use the context to answer the user question in 3-4 lines  . Context:${context} question:${query} Answer:`;
    const answer=await getresponse(fullprompt);
     if(answer){
     return new NextResponse(answer,{

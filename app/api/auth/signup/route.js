@@ -13,6 +13,6 @@ const user={username:username,password:hashedpass};
 return NextResponse.json({message:"Signed up successful"},{status:200})}
 catch(err){
   console.log("error while doing signup ",err);
-  return NextResponse.json({error:"Signed up unsuccessful"},{status:500});
+  return NextResponse.json({error:"Signed up not completed successfully"},{status:500});
 }
 }
